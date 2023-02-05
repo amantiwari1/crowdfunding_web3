@@ -29,7 +29,7 @@ root.render(
         },
       }}
     >
-      <NotificationsProvider>
+      <NotificationsProvider position="top-right">
         <Router>
           <StateProvider>
             <App />

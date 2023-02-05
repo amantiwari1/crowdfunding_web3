@@ -1,16 +1,9 @@
-import {
-  Badge,
-  Button,
-  Card,
-  Grid,
-  Group,
-  Image,
-  Loader,
-  Text,
-} from "@mantine/core";
+import { Grid, Loader, Title } from "@mantine/core";
 import { useContractRead } from "@thirdweb-dev/react";
 import { ethers } from "ethers";
-import DisplayCampaigns from "../components/DisplayCampaigns";
+import DisplayCampaigns, {
+  DisplayCampaignsProps,
+} from "../components/DisplayCampaigns";
 import { useAppState } from "../context";
 
 const Home = () => {
@@ -19,12 +12,26 @@ const Home = () => {
 
   return (
     <div>
+      <Title align="center" mb={20}>
+        Explore Campaigns
+      </Title>
+
       {isLoading ? (
         <Loader />
       ) : (
         <Grid>
-          {data.map((item: any, i: number) => {
-            return <DisplayCampaigns key={i} {...item} />;
+          {data.map((item: DisplayCampaignsProps, i: number) => {
+            return (
+              <DisplayCampaigns
+                key={i}
+                {...item}
+                target={ethers.utils.formatEther(item.target.toString())}
+                amountCollected={ethers.utils.formatEther(
+                  item.amountCollected.toString()
+                )}
+                deadline={new Date(item.deadline.toNumber())}
+              />
+            );
           })}
         </Grid>
       )}

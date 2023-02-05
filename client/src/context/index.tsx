@@ -40,8 +40,7 @@ interface StateProviderProps {
 
 export const StateProvider = ({ children }: StateProviderProps) => {
   const { contract } = useContract(
-    "0x82945EC8E48753b41C6CA0cbF1ECCBd71dD008F7"
-    // "0x993310936c5DfB7b03365E46106fA05dB43B46B6"
+    "0x796F0816bA4563e386d7517ff4eab63111af7101"
   );
 
   const {
